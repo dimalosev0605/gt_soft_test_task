@@ -1,0 +1,62 @@
+Задача следующая:
+Написать тестовое GUI-приложение с использованием фреймворка Qt.
+
+Это приложение должно выполнять следующие действия:
+
+1) Выполнить сетевое подключение (TCP) к хосту jsonplaceholder.typicode.com и порту 80. После подключения выдать команду, завершающуюся двойным переводом строки (HTTP-запрос):
+
+GET /users HTTP/1.0
+HOST: jsonplaceholder.typicode.com
+
+2) В ответ на эту команду получить ответ вида
+
+HTTP/1.1 200 OK
+Date: Wed, 30 Jan 2019 13:49:04 GMT
+Content-Type: application/json; charset=utf-8
+Connection: close
+Set-Cookie: __cfduid=d79351345a4dbd91c6ae41594c5eb265f1548856144; expires=Thu, 30-Jan-20 13:49:04 GMT; path=/; domain=.typicode.com; HttpOnly
+X-Powered-By: Express
+Vary: Origin, Accept-Encoding
+Access-Control-Allow-Credentials: true
+Cache-Control: public, max-age=14400
+Pragma: no-cache
+Expires: Wed, 30 Jan 2019 17:49:04 GMT
+X-Content-Type-Options: nosniff
+Etag: W/"160d-1eMSsxeJRfnVLRBmYJSbCiJZ1qQ"
+Via: 1.1 vegur
+CF-Cache-Status: HIT
+Server: cloudflare
+CF-RAY: 4a14664df5c42b64-AMS
+
+[
+  {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": {
+        "lat": "-37.3159",
+        "lng": "81.1496"
+      }
+    },
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    }
+  }
+]
+
+3) Проигнорировав начальные строки до того момента, пока не встретится двойной перевод строки, выполнить преобразование полученных данных в JSON-формат.
+
+4) Передать полученный JSON в табличную Qml-форму, моделью в которой будут данные из полученного JSON.
+
+5) Отобразить в таблице поля name, а также поле address->geo->latitude в виде круга(или квадрата, что проще), изменяющего цвет своей заливки в зависимости от значения этого поля: отрицательное – заливка красным цветом, положительное – заливка зелёным цветом.
+
+6) Предусмотреть индикацию состояния (невозможность сетевого подключения, неверный формат данных и т.п.).
