@@ -103,16 +103,16 @@ void Client::send_request()
 
 void Client::process_data()
 {
-    static int is_http_header_read = false;
+    static bool is_http_header_read = false;
 
     if(!is_http_header_read) {
-        const int index = received_data.indexOf("\r\n\r\n");
+        const auto index = received_data.indexOf("\r\n\r\n");
         if(index != -1) {
             received_data = received_data.remove(0, index + 4);
             is_http_header_read = true;
         }
     }
-    else {
+    if(is_http_header_read) {
         const auto j_doc = QJsonDocument::fromJson(QByteArray(received_data.toStdString().c_str()));
         if(!j_doc.isNull()) {
             emit json_ready(j_doc);
