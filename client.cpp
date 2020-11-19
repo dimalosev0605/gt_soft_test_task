@@ -13,7 +13,6 @@ Client::Client(QObject *parent)
     connect(&socket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), this, &Client::error_occurred);
     connect(&socket, &QTcpSocket::readyRead, this, &Client::ready_read);
     connect(this, &Client::host_lookup_finished, this, &Client::connect_to_host);
-    lookup_host();
 }
 
 void Client::connected()
@@ -60,7 +59,7 @@ void Client::error_occurred(QAbstractSocket::SocketError socketError)
 
 void Client::ready_read()
 {
-    auto bytes_available = socket.bytesAvailable();
+    const auto bytes_available = socket.bytesAvailable();
     received_data += socket.read(bytes_available);
     process_data();
 }

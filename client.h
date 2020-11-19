@@ -29,12 +29,14 @@ private slots:
     void error_occurred(QAbstractSocket::SocketError socketError);
     void ready_read();
 
-    void lookup_host();
     void lookedup_host(const QHostInfo& host);
     void connect_to_host();
 
     void send_request();
     void process_data();
+
+public slots:
+    void lookup_host();
 
 public:
     explicit Client(QObject *parent = nullptr);

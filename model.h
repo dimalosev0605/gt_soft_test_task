@@ -11,6 +11,7 @@ class Model: public QAbstractListModel
     Q_OBJECT
     QHash<int, QByteArray> roles;
     QVector<std::tuple<QString, double>> model_data;
+    QJsonDocument j_doc_data;
     Client client;
 
 private:
